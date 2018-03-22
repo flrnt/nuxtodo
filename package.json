@@ -8,7 +8,8 @@
     "dev": "PORT=3210 nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "nuxt": "^1.4.0",
