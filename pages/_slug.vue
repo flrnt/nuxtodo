@@ -31,7 +31,7 @@
           <nuxt-link to="/completed">Completed</nuxt-link>
         </li>
       </ul>
-      <button class="clear-completed">
+      <button @click="clearCompleted" class="clear-completed">
         Clear completed
       </button>
     </footer>
@@ -55,6 +55,10 @@ export default {
     },
     destroyTodo(index) {
       this.$store.dispatch('destroyTodoAction', index)
+    },
+    clearCompleted() {
+      var unclearTodos = this.$store.getters.activeTodos
+      this.$store.dispatch('clearCompletedAction', unclearTodos)
     }
   },
   computed: {

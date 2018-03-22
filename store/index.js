@@ -25,6 +25,10 @@ const store = () => new Vuex.Store({
     },
     destroyTodoMutation(state, todoId) {
       state.todos.splice(todoId, 1)
+    },
+    clearCompletedMutation(state, unclearTodos) {
+      // I should trash clear todos and keep unclears
+      state.todos = unclearTodos
     }
   },
   actions: {
@@ -33,6 +37,9 @@ const store = () => new Vuex.Store({
     },
     destroyTodoAction({ commit }, todo) {
       commit('destroyTodoMutation', todo)
+    },
+    clearCompletedAction({commit}, unclearTodos) {
+      commit('clearCompletedMutation', unclearTodos)
     }
   }
 })
