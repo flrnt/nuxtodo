@@ -42,8 +42,7 @@
 export default {
   data() {
     return {
-      newTodo: '',
-      todos: []
+      newTodo: ''
     }
   },
   methods: {
@@ -60,7 +59,18 @@ export default {
     destroyTodo(id) {
       this.$delete(this.todos, id)
     }
-  }
+  },
+  computed: {
+    todos () {
+      if (this.$route.params.slug === 'active') {
+        return this.$store.getters.activeTodos
+      }
+      if (this.$route.params.slug === 'completed') {
+        return this.$store.getters.completedTodos
+      }
+      return this.$store.getters.allTodos
+    }
+  },
 }
 </script>
 
