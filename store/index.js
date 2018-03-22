@@ -18,6 +18,16 @@ const store = () => new Vuex.Store({
     completedTodos (state) {
       return state.todos.filter(todo => todo.completed)
     }
+  },
+  mutations: {
+    createTodoMutation(state, newTodo) {
+      state.todos.push(newTodo)
+    }
+  },
+  actions: {
+    createTodoAction ({ commit }, newTodo) {
+      commit('createTodoMutation', newTodo)
+    }
   }
 })
 

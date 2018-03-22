@@ -49,10 +49,7 @@ export default {
     createTodo() {
       var newTodo = this.newTodo
       if(newTodo) {
-        this.todos.push({
-          title: newTodo,
-          completed: false
-        })
+        this.$store.dispatch('createTodoAction', { title: newTodo, completed: false })
         this.newTodo = ''
       }
     },
