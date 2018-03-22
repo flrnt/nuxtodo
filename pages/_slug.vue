@@ -19,7 +19,7 @@
 			</ul>
 		</section>
     <footer class="footer">
-      <span class="todo-count"><strong>0</strong> item<span>s</span> left</span>
+      <span class="todo-count"><strong>{{ leftTodos }}</strong> item<span>s</span> left</span>
       <ul class="filters">
         <li>
           <nuxt-link to="/" exact>All</nuxt-link>
@@ -70,6 +70,9 @@ export default {
         return this.$store.getters.completedTodos
       }
       return this.$store.getters.allTodos
+    },
+    leftTodos() {
+      return this.$store.getters.activeTodos.length
     }
   },
   mounted() {
