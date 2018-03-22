@@ -72,6 +72,16 @@ export default {
       return this.$store.getters.allTodos
     }
   },
+  mounted() {
+    fetchTodos: {
+      this.$store.dispatch('fetchTodosAction')
+    }
+  },
+  watch: {
+    todos() {
+      this.$store.dispatch('saveTodosAction')
+    }
+  }
 }
 </script>
 
