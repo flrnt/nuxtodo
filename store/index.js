@@ -22,11 +22,17 @@ const store = () => new Vuex.Store({
   mutations: {
     createTodoMutation(state, newTodo) {
       state.todos.push(newTodo)
+    },
+    destroyTodoMutation(state, todoId) {
+      state.todos.splice(todoId, 1)
     }
   },
   actions: {
     createTodoAction ({ commit }, newTodo) {
       commit('createTodoMutation', newTodo)
+    },
+    destroyTodoAction({ commit }, todo) {
+      commit('destroyTodoMutation', todo)
     }
   }
 })

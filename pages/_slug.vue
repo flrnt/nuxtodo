@@ -53,8 +53,8 @@ export default {
         this.newTodo = ''
       }
     },
-    destroyTodo(id) {
-      this.$delete(this.todos, id)
+    destroyTodo(index) {
+      this.$store.dispatch('destroyTodoAction', index)
     }
   },
   computed: {
