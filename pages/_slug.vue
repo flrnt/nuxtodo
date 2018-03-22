@@ -48,11 +48,14 @@ export default {
   },
   methods: {
     AddTodo() {
-      this.todos.push({
-        title: this.newTodo,
-        completed: false
-      })
-      this.newTodo = ''
+      var newTodo = this.newTodo
+      if(newTodo) {
+        this.todos.push({
+          title: newTodo,
+          completed: false
+        })
+        this.newTodo = ''
+      }
     }
   }
 }
