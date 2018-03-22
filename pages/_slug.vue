@@ -2,7 +2,7 @@
   <section class="todoapp">
     <header class="header">
       <h1>Todos</h1>
-      <input class="new-todo" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="AddTodo" autofocus>
+      <input class="new-todo" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="addTodo" autofocus>
     </header>
 		<section class="main">
 			<input class="toggle-all" type="checkbox">
@@ -47,7 +47,7 @@ export default {
     }
   },
   methods: {
-    AddTodo() {
+    addTodo() {
       var newTodo = this.newTodo
       if(newTodo) {
         this.todos.push({
