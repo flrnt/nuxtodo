@@ -2,7 +2,7 @@
   <section class="todoapp">
     <header class="header">
       <h1>Todos</h1>
-      <input class="new-todo" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="addTodo" autofocus>
+      <input class="new-todo" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="createTodo" autofocus>
     </header>
 		<section class="main">
 			<input class="toggle-all" type="checkbox">
@@ -12,7 +12,7 @@
           <div class="view">
             <input class="toggle" type="checkbox" :checked="todo.completed" v-model="todo.completed">
             <label>{{todo.title}}</label>
-            <button class="destroy"></button>
+            <button class="destroy" @click="destroyTodo(index)"></button>
           </div>
           <input class="edit" type="text">
         </li>
@@ -47,7 +47,7 @@ export default {
     }
   },
   methods: {
-    addTodo() {
+    createTodo() {
       var newTodo = this.newTodo
       if(newTodo) {
         this.todos.push({
@@ -56,6 +56,9 @@ export default {
         })
         this.newTodo = ''
       }
+    },
+    destroyTodo(id) {
+      this.$delete(this.todos, id)
     }
   }
 }
