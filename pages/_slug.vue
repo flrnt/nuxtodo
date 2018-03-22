@@ -8,10 +8,10 @@
 			<input class="toggle-all" type="checkbox">
 			<label for="toggle-all">Mark all as complete</label>
 			<ul class="todo-list">
-        <li>
+        <li v-for="(todo, index) in todos" :key="index">
           <div class="view">
             <input class="toggle" type="checkbox">
-            <label>Task title</label>
+            <label>{{todo.title}}</label>
             <button class="destroy"></button>
           </div>
           <input class="edit" type="text">
