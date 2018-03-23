@@ -50,7 +50,7 @@ export default {
     createTodo() {
       var newTodo = this.newTodo
       if(newTodo) {
-        this.$store.dispatch('createTodoAction', { title: newTodo, completed: false })
+        this.$store.dispatch('createTodoAction', { id: Math.random().toString(36).substr(2, 9), title: newTodo, completed: false })
         this.newTodo = ''
       }
     },
