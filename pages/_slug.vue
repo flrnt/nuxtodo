@@ -12,7 +12,7 @@
           <div class="view">
             <input class="toggle" type="checkbox" :checked="todo.completed" v-model="todo.completed">
             <label @dblclick="editTodo(todo)">{{todo.title}}</label>
-            <button class="destroy" @click="destroyTodo(index)"></button>
+            <button class="destroy" @click="destroyTodo(todo.id)"></button>
           </div>
           <input class="edit" type="text" v-model="todo.title" @keyup.enter="quitEditMode">
         </li>
@@ -54,8 +54,8 @@ export default {
         this.newTodo = ''
       }
     },
-    destroyTodo(index) {
-      this.$store.dispatch('destroyTodoAction', index)
+    destroyTodo(todoId) {
+      this.$store.dispatch('destroyTodoAction', todoId)
     },
     clearCompleted() {
       var unclearTodos = this.$store.getters.activeTodos
