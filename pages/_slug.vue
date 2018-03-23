@@ -8,13 +8,13 @@
 			<input class="toggle-all" type="checkbox">
 			<label for="toggle-all">Mark all as complete</label>
 			<ul class="todo-list">
-        <li v-for="(todo, index) in todos" :key="index" :class="{completed: todo.completed}">
+        <li v-for="(todo, index) in todos" :key="index" :class="{completed: todo.completed, editing: todo === todoIsEditing}">
           <div class="view">
             <input class="toggle" type="checkbox" :checked="todo.completed" v-model="todo.completed">
-            <label>{{todo.title}}</label>
+            <label @dblclick="editTodo(todo)">{{todo.title}}</label>
             <button class="destroy" @click="destroyTodo(index)"></button>
           </div>
-          <input class="edit" type="text">
+          <input class="edit" type="text" v-model="todo.title" @keyup.enter="quitEditMode">
         </li>
 			</ul>
 		</section>
@@ -42,7 +42,8 @@
 export default {
   data() {
     return {
-      newTodo: ''
+      newTodo: '',
+      todoIsEditing: null
     }
   },
   methods: {
@@ -59,6 +60,15 @@ export default {
     clearCompleted() {
       var unclearTodos = this.$store.getters.activeTodos
       this.$store.dispatch('clearCompletedAction', unclearTodos)
+    },
+    editTodo(todo) {
+      this.todoIsEditing = todo
+    },
+    quitEditMode() {
+      this.todoIsEditing = null
+    },
+    saveTodos() {
+      this.$store.dispatch('saveTodosAction')
     }
   },
   computed: {
@@ -81,8 +91,9 @@ export default {
     }
   },
   watch: {
-    todos() {
-      this.$store.dispatch('saveTodosAction')
+    todos: {
+      deep: true,
+      handler: 'saveTodos'
     }
   }
 }
