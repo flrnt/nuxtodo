@@ -31,17 +31,11 @@ const store = () => new Vuex.Store({
       state.todos = unclearTodos
     },
     async fetchTodosMutation(state) {
-      let res = await axios({
-        url: 'https://api.jsonbin.io/b/5ab4a699989617146bd6f840/latest'
-      })
-      state.todos = res.data.todos
+      let res = await axios.get('https://api.jsonbin.io/b/5ab4a699989617146bd6f840/latest')
+      state.todos = res.data
     },
     async saveTodosMutation(state) {
-      await axios({
-        url: 'https://api.jsonbin.io/b/5ab4a699989617146bd6f840',
-        method: 'put',
-        data: { todos: state.todos }
-      })
+      await axios.put('https://api.jsonbin.io/b/5ab4a699989617146bd6f840', state.todos)
     }
   },
   actions: {
